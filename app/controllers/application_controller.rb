@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  
+  # SessionsHelperにかかれている全てのメソッドが、このControllerのインスタンスメソッドとして取り込まれている
+  # これをMix-inという
   include SessionsHelper
   
   private

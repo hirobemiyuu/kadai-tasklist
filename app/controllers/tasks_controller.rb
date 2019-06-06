@@ -4,6 +4,8 @@ class TasksController < ApplicationController
   def index
     if logged_in?
       @tasks = current_user.tasks.all
+      # @tasks = Task.where(user_id: current_user.id)
+      # @tasks = Task.where(user: current_user)
     end
   end
   
@@ -15,6 +17,9 @@ class TasksController < ApplicationController
   end
   def create
     @task = current_user.tasks.new(task_params)
+    # @task = Task.new(task_params)
+    # @task.user_id = current_user.id
+    # @task.user = current_user
     if @task.save
       flash[:success] = "Taskが正常に登録されました"
       redirect_to @task
