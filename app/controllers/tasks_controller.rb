@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   def index
     if logged_in?
       @tasks = current_user.tasks.all
@@ -11,10 +11,10 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find(params[:id])
   end
   def new
-    @task =current_user.tasks.build
+    @task = current_user.tasks.new
   end
   def create
-    @task = current_user.tasks.build(task_params)
+    @task = current_user.tasks.new(task_params)
     if @task.save
       flash[:success] = "Taskが正常に登録されました"
       redirect_to @task
